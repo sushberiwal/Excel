@@ -1,4 +1,9 @@
 let cellsContentDiv = document.querySelector(".cells-content");
+
+
+let username = prompt("Enter Your Name")
+console.log(username);
+
 function initCells(){
     let cellsContent = "<div class='top-left-cell'></div>";
     cellsContent += "<div class='top-row'>"
@@ -54,3 +59,6 @@ function initDB(){
     db = sheetsDB[sheetsDB.length-1];
 }
 initDB();
+
+
+socket.emit("name"  , username);

@@ -130,3 +130,17 @@
 
 .add-sheet .fas {
 }
+
+
+.realtime-selection{
+    border:3px solid red;
+    position: relative;
+}
+
+.collaborator{
+    position: absolute;
+    color: red;
+    font-size: 8px;
+    left: 108%;
+    top: -2px;
+}

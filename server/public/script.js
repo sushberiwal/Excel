@@ -29,6 +29,8 @@ for(let i=0 ; i<allCells.length ; i++){
         let address = String.fromCharCode(65+colId)+(rowId+1)+"";
         addressInput.value = address;
         formulaInput.value = cellObject.formula;
+
+        socket.emit("cellClick" , {rowId , colId , address});
     })
 
     allCells[i].addEventListener("blur" , function(e){
