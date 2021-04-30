@@ -118,7 +118,7 @@
 
 .add-sheet {
     height: 100%;
-    width: 2%;
+    width: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
