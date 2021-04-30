@@ -25,10 +25,14 @@ function initCells(){
 }
 initCells();
 
+// it represents the current db
 let db;
 
+// it will store all db's corresponding to sheet number
+let sheetsDB = [];
+
 function initDB(){
-    db = [];
+    let newDB = [];
     for(let i=0 ; i<100 ; i++){
         let row = [];
         for(let j=0 ; j<26 ; j++){
@@ -43,7 +47,10 @@ function initDB(){
             }
             row.push(cellObject);
         }
-        db.push(row);
+        newDB.push(row);
     }
+    // db = newDB;
+    sheetsDB.push(newDB);
+    db = sheetsDB[sheetsDB.length-1];
 }
 initDB();
