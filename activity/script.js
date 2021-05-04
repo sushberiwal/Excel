@@ -23,16 +23,34 @@ cellsContentDiv.addEventListener("scroll" , function(e){
 for(let i=0 ; i<allCells.length ; i++){
 
     allCells[i].addEventListener("click" , function(e){
+        if(document.querySelector(".active-cell")){
+            document.querySelector(".active-cell").classList.remove("active-cell");
+        }
+        e.target.classList.add("active-cell");
+
         let rowId = Number(e.target.getAttribute("rowid"));
         let colId = Number(e.target.getAttribute("colid"));
         let cellObject = db[rowId][colId];
         let address = String.fromCharCode(65+colId)+(rowId+1)+"";
         addressInput.value = address;
         formulaInput.value = cellObject.formula;
+
+        cellObject.fontStyle.bold
+        ? document.querySelector(".bold").classList.add("active-font-style")
+        : document.querySelector(".bold").classList.remove("active-font-style");
+  
+        cellObject.fontStyle.italic
+        ? document.querySelector(".italic").classList.add("active-font-style")
+        : document.querySelector(".italic").classList.remove("active-font-style");
+  
+        cellObject.fontStyle.underline
+        ? document.querySelector(".underline").classList.add("active-font-style")
+        : document.querySelector(".underline").classList.remove("active-font-style");
     })
 
     allCells[i].addEventListener("blur" , function(e){
         lastSelectedCell = e.target;
+        // e.target.classList.remove("active-cell");
         
         let cellValue = e.target.textContent;
         
@@ -76,6 +94,9 @@ for(let i=0 ; i<allCells.length ; i++){
 // when someone leaves the formula input !!
 formulaInput.addEventListener("blur" , function(e){
     let formula = e.target.value;
+    if(!lastSelectedCell){
+        return;
+    }
     // ( A1 + A2 )
     if(formula){
         let {rowId , colId} = getRowIdColIdFromElement(lastSelectedCell);
